@@ -2,7 +2,7 @@
 
 angular.module('drupal8linksApp')
   .controller('LinksCtrl', function ($scope, $http) {
-    $http.get('links/links.json').success(function(data) {
+    $http.get('scripts/links/links.json').success(function(data) {
       $scope.links = data;
     });
   })

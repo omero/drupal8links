@@ -10,19 +10,37 @@
  */
 angular
   .module('drupal8linksApp', [
-    'ngRoute'
+    'ui.router'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('home', {
+        url:'',
+        views:{
+          '':{
+            templateUrl:'views/home.html'
+          },
+          'sidebar@home':{
+            controller:'CategoriesListCtrl',
+            templateUrl:'views/sidebar.html',
+          },
+          'content@home':{
+            controller:'LinksCtrl',
+            templateUrl:'views/content.html',
+          }
+        },
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
+      .state('home.detail', {
+        url:'/:categoryName',
+        views:{
+          'content@home':{
+            controller:'LinksDetailCtrl',
+            templateUrl:'views/content.html',
+          }
+        }
       });
+      $urlRouterProvider.otherwise('home');
+  })
+  .controller('LinksCtrl', function ($scope, $stateParams) {
+
   });

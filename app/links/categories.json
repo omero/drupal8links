@@ -1,0 +1,52 @@
+{"categories":[
+    {
+      "id": 1,
+      "tid": 1,
+      "title": "Routing",
+      "items": 42
+    },
+    {
+      "id": 2,
+      "tid": 2,
+      "title": "Form",
+      "items": 3
+    },
+    {
+      "id": 3,
+      "tid": 3,
+      "title": "Config",
+      "items": 12
+    },
+    {
+      "id": 4,
+      "tid": 4,
+      "title": "Plugin",
+      "items": 94
+    },
+    {
+      "id": 5,
+      "tid": 5,
+      "title": "Entity",
+      "items": 28
+    },
+    {
+      "id": 6,
+      "tid": 6,
+      "title": "Field",
+      "items": 1
+    },
+    {
+      "id": 7,
+      "tid": 7,
+      "title": "Template",
+      "items": 54
+    },
+    {
+      "id": 8,
+      "tid": 8,
+      "title": "Other",
+      "items": 2
+    }
+  ]
+}
+

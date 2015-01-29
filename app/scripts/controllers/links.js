@@ -7,6 +7,5 @@ angular.module('drupal8linksApp')
     });
   })
   .controller('LinksDetailCtrl', function ($scope, $http, $stateParams) {
-    console.log($stateParams.categoryName);
     $scope.string = $stateParams.categoryName;
   });

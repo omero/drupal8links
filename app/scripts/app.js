@@ -18,6 +18,15 @@ angular
     $httpProvider.defaults.headers.common["Accept"] = "application/json";
     $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
     $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+    var authentication = function($q, authenticationSvc){
+      var userInfo = authenticationSvc.getUserInfo();
+      if (userInfo){
+        return $q.when(userInfo);
+      }
+      else{
+        return $q.reject({authenticated: false});
+      }
+    };
     $stateProvider
       .state('home', {
         url:'',
@@ -25,27 +34,44 @@ angular
           '':{
             templateUrl:'views/home.html'
           },
+          'menu':{
+            controller:'MenuCtrl',
+            templateUrl:'views/menu.html'
+          },
           'sidebar@home':{
             controller:'CategoriesListCtrl',
-            templateUrl:'views/sidebar.html',
+            templateUrl:'views/sidebar.html'
           },
           'content@home':{
             controller:'LinksCtrl',
-            templateUrl:'views/content.html',
+            templateUrl:'views/content.html'
           }
-        },
+        }
       })
       .state('home.detail', {
         url:'/:categoryName',
         views:{
           'content@home':{
             controller:'LinksDetailCtrl',
-            templateUrl:'views/content.html',
+            templateUrl:'views/content.html'
           }
         }
+      })
+      .state('login', {
+        url:'/user/login',
+        controller:'LoginCtrl',
+        templateUrl:'views/login.html'
       });
       $urlRouterProvider.otherwise('home');
   })
-  .controller('LinksCtrl', function ($scope, $stateParams) {
+  .run(["$rootScope", "$location", function($rootScope, $location) {
+    $rootScope.$on("$routeChangeSuccess", function(userInfo) {
+      console.log(userInfo);
+    });
 
-  });
+    $rootScope.$on("$routeChangeError", function(event, current, previous, eventObj) {
+      if (eventObj.authenticated === false) {
+        console.log('not logged')
+      }
+    });
+  }]);

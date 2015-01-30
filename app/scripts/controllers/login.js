@@ -15,6 +15,7 @@ angular.module('drupal8linksApp')
     }
     $scope.login = function(){
       authenticationSvc.login($scope.user.name, $scope.user.password);
+
     }
 
   });

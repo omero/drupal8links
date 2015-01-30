@@ -8,31 +8,40 @@
  * Factory in the drupal8linksApp.
  */
 angular.module('drupal8linksApp')
-  .factory('authenticationSvc', function ($http, $q, $window, resourcesSvc) {
+  .factory('authenticationSvc', function ($http, $q, $window, resourcesSvc, $state) {
       var userInfo;
 
       function login(userName, password) {
-        //console.log(resourcesSvc.resources.login);
-        //var deferred = $q.defer();
-        $http.post(resourcesSvc.resources.login, {
-          username: userName,
-          password: password
-        }).then(function(result) {
-          /*userInfo = {
+        var data = $.param({username: userName, password: password});
+        var deferred = $q.defer();
+        $http.post(resourcesSvc.resources.login, data).then(function(result) {
+          console.log(result);
+          userInfo = {
             token: result.data.token,
-            userName: result.data.name
-          };*/
-          //$window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
-          //deferred.resolve(userInfo);
-          console.log('logeao');
+            user: result.data.user
+          };
+          $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+          deferred.resolve(userInfo);
+          $state.go('home');
         }, function(error) {
-          //deferred.reject(error);
+          deferred.reject(error);
         });
-
-        //return deferred.promise;
+        return deferred.promise;
       }
 
+      function getUserInfo() {
+        return userInfo;
+      }
+
+      function init() {
+        if ($window.sessionStorage["userInfo"]) {
+          userInfo = JSON.parse($window.sessionStorage["userInfo"]);
+        }
+      }
+      init();
+
       return {
-        login: login
+        login: login,
+        getUserInfo: getUserInfo
       };
   });

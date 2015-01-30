@@ -15,8 +15,9 @@ angular.module('drupal8linksApp')
         var data = $.param({username: userName, password: password});
         var deferred = $q.defer();
         $http.post(resourcesSvc.resources.login, data).then(function(result) {
-          console.log(result);
           userInfo = {
+            session_name: result.data.session_name,
+            sessid: result.data.sessid,
             token: result.data.token,
             user: result.data.user
           };
@@ -28,6 +29,24 @@ angular.module('drupal8linksApp')
         });
         return deferred.promise;
       }
+
+    function logout() {
+      console.log(userInfo);
+      var deferred = $q.defer();
+      $http({
+          method: 'POST',
+          url:resourcesSvc.resources.logout,
+          headers: { 'X-CSRF-Token' : userInfo.token }
+      }).then(function(result) {
+        console.log('logoff');
+        $window.location.reload();
+        $window.sessionStorage["userInfo"] = null;
+        userInfo = null;
+        deferred.resolve(userInfo);
+      }, function(error) {
+        deferred.reject(error);
+      });
+    }
 
       function getUserInfo() {
         return userInfo;
@@ -42,6 +61,7 @@ angular.module('drupal8linksApp')
 
       return {
         login: login,
+        logout: logout,
         getUserInfo: getUserInfo
       };
   });

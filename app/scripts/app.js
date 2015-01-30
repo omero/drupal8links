@@ -14,6 +14,7 @@ angular
   ])
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.withCredentials = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.headers.common["Accept"] = "application/json";
     $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
@@ -33,10 +34,6 @@ angular
         views:{
           '':{
             templateUrl:'views/home.html'
-          },
-          'menu':{
-            controller:'MenuCtrl',
-            templateUrl:'views/menu.html'
           },
           'sidebar@home':{
             controller:'CategoriesListCtrl',

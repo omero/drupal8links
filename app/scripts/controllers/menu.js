@@ -8,10 +8,13 @@
  * Controller of the drupal8linksApp
  */
 angular.module('drupal8linksApp')
-  .controller('MenuCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MenuCtrl', function ($scope, authenticationSvc) {
+    $scope.$watch(authenticationSvc.getUserInfo, function (){
+        $scope.userInfo = authenticationSvc.getUserInfo();
+        $scope.user = $scope.userInfo.user;
+        $scope.token = $scope.userInfo.token;
+    });
+    $scope.logout = function(){
+      authenticationSvc.logout();
+    }
   });

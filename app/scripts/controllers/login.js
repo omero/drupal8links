@@ -8,14 +8,14 @@
  * Controller of the drupal8linksApp
  */
 angular.module('drupal8linksApp')
-  .controller('LoginCtrl', function ($scope, authenticationSvc) {
+  .controller('LoginCtrl', function ($scope, authenticationSvc, $state) {
     $scope.user = {
       name: '',
       password: ''
     }
     $scope.login = function(){
       authenticationSvc.login($scope.user.name, $scope.user.password);
-
+      $state.forceReload();
     }
 
   });

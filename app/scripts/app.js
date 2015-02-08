@@ -58,6 +58,11 @@ angular
         url:'/user/login',
         controller:'LoginCtrl',
         templateUrl:'views/login.html'
+      })
+      .state('add', {
+        url:'/link/add',
+        controller:'addLinkCtrl',
+        templateUrl:'views/addlink.html'
       });
       $urlRouterProvider.otherwise('home');
   })

@@ -32,7 +32,9 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+
               <li ng-show="user.name" ><a>{{'Hello '+user.name}}</a></li>
+              <li ng-show="user.name" ><a href="#/link/add">Add Link</a></li>
               <li ng-show="user.name" ><a href="#" ng-click="logout()" >Log Out</a></li>
               <li ng-show="!user.name" ><a href="#/user/login">Login</a></li>
             </ul>
@@ -99,6 +101,7 @@
         <script src="scripts/services/resourcessvc.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/menu.js"></script>
+        <script src="scripts/controllers/addlink.js"></script>
         <!-- endbuild -->
 </body>
 </html>

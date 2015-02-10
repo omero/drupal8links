@@ -15,7 +15,8 @@ angular.module('drupal8linksApp')
         login: 'http://dev-links-drupal-7.pantheon.io/api/user/login',
         logout: 'http://dev-links-drupal-7.pantheon.io/api/user/logout',
         categories: 'http://dev-links-drupal-7.pantheon.io/api/views/categories_links',
-        links:'http://dev-links-drupal-7.pantheon.io/api/views/links'
+        links:'http://dev-links-drupal-7.pantheon.io/api/views/links',
+        node:'http://dev-links-drupal-7.pantheon.io/api/node'
       }
     };
   });

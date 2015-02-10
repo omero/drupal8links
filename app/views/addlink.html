@@ -1,0 +1,45 @@
+<form class="form-horizontal">
+  <!-- Form Name -->
+  <legend>Add Link</legend>
+  <p class="bg-success" ng-show="msg">{{msg}}</p>
+  <p class="bg-danger" ng-show="error">{{error}}</p>
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="title">Title</label>
+    <div class="col-md-6">
+      <input id="title" name="title" placeholder="Title" class="form-control input-md" required="" type="text" ng-model="form.title">
+      <span class="help-block">Add a title for the link</span>
+    </div>
+  </div>
+  <!-- Textarea -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="summary">Summary</label>
+    <div class="col-md-6">
+      <textarea class="form-control" id="summary" name="summary" ng-model="form.body">Summary</textarea>
+    </div>
+  </div>
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="url">Link</label>
+    <div class="col-md-6">
+      <input id="url" name="url" placeholder="http://" class="form-control input-md" required="" type="text" ng-model="form.url">
+      <span class="help-block">Add the link</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-4 control-label">Tags</label>
+    <div class="col-md-6">
+      <tags-input add-on-space="true" ng-model="form.tags"></tags-input>
+      <span class="help-block">Add tags related to the link</span>
+    </div>
+  </div>
+  <div class="col-md-offset-4 col-md-6">
+    <input type="submit" id="btn-addlink" class="btn btn-custom btn-lg btn-block" value="Submit" ng-click="addLink()">
+  </div>
+</form>
+<div class="col-md-offset-4 col-md-6">
+  <pre>
+    <div>{{form.tags}}</div>
+  </pre>
+</div>
+

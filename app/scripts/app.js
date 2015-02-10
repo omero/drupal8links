@@ -10,7 +10,8 @@
  */
 angular
   .module('drupal8linksApp', [
-    'ui.router'
+    'ui.router',
+    'ngTagsInput'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.defaults.useXDomain = true;

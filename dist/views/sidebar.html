@@ -1,0 +1,1 @@
+<ul class="nav nav-pills nav-stacked"> <li ng-repeat="categorie in categories" ui-sref-active="active"> <a ui-sref="home.detail({categoryName: (categorie.title|lowercase)})">{{categorie.title}}<span class="badge pull-right">{{categorie.items}}</span></a> </li> </ul>
